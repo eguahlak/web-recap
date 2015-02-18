@@ -1,3 +1,5 @@
+<%@page import="java.util.Collection"%>
+<%@page import="dk.cphbusiness.greeter.model.Person"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -14,6 +16,9 @@
       <c:forEach var="person" items="${people}">
         <li>${person.name} from ${person.address.postal.district}</li>
       </c:forEach>
+      <% for (Person person : ((Collection<Person>)request.getAttribute("people"))) { %>
+        <li><%= person.getName() %> from ... </li>
+        <% } %>
     </ul>
     <form action="People" method="POST">
       <table>
